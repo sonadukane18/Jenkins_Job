@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Build app') {
             steps {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sonadukane18/Jenkins_Docker_Demo_Repo.git']])
-                
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sonadukane18/Jenkins_Job.git']])
             }
         }
 
@@ -20,7 +19,7 @@ pipeline {
         stage('Rename Image Tag') {
             steps {
                 script {
-                    bat 'docker tag jenkinsdocker sonadukane18/jenkinsdockerapp:image'
+                    bat 'docker tag helloworld sonadukane18/helloworld:image'
                 }
             }
         }
@@ -30,7 +29,7 @@ pipeline {
                 script {
                     
                         bat "docker login -u sonadukane18 -p Kashmir@25"
-                        bat 'docker push sonadukane18/jenkinsdockerapp:image'
+                        bat 'docker push sonadukane18/helloworld:image'
                     
                 }
             }
